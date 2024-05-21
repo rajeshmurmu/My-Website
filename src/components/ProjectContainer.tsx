@@ -1,16 +1,16 @@
 import React from "react";
 
-export default function MainContainer() {
+export default function ProjectContainer() {
   return (
     <div>
       {/* <!-- ############################## main-container ##################################### --> */}
-      <div className="main-container w-full h-auto bg-slate-400">
+      <div className="main-container w-full h-auto bg-transparent text-white">
         <div id="projects" className="content w-4/5 m-auto">
           <div className="flex justify-center flex-col items-center p-5">
             <div className="project-heading p-5">
-              <h1 className="text-5xl font-bold">My Projects</h1>
+              <h1 className="text-3xl md:text-5xl font-bold">My Projects</h1>
             </div>
-            <div className="project-discription py-5 lg:px-40 text-center">
+            <div className="project-discription py-5 lg:px-40 md:text-center">
               <p className="text-base xl:text-xl xl:px-36">
                 Here you will find some of the personal projects that I created,
                 with each containing its own case study.

@@ -1,5 +1,5 @@
 import HeroSection from "@/components/HeroSection";
-import MainContainer from "@/components/MainContainer";
+import ProjectContainer from "@/components/ProjectContainer";
 import Image from "next/image";
 
 export default function Home() {
@@ -115,7 +115,7 @@ export default function Home() {
     <>
       <HeroSection />
       <main>
-        <MainContainer />
+        <ProjectContainer />
       </main>
     </>
   );

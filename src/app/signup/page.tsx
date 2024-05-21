@@ -9,82 +9,57 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 export default function page() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
-  const [showPassword, setShowPassword] = useState(false);
+
   const [userData, setUserData] = useState({
+    username: "",
     email: "",
     password: "",
   });
-  const [isLoading, setIsLoading] = useState(false);
-  // const handleSubmit = async () => {
-
-  //   setIsLoading(true);
-  //   try {
-  //     const response = await axios.post("/api/login", userData, {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-
-  //     const finalResponse = response.data;
-
-  //     if (finalResponse.success) {
-  //       console.log(finalResponse);
-  //       toast({ title: "Login Successfully" });
-  //       router.replace("/");
-  //     } else {
-  //       toast({
-  //         title: "Login Failed Try Again",
-  //         description: finalResponse.message,
-  //         variant: "destructive",
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.log("Error While Login", error);
-  //     toast({ title: "Error While Login", variant: "destructive" });
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
 
   const handleSubmit = async () => {
     setIsLoading(true);
 
     try {
-      const result = await signIn("credentials", {
-        redirect: false,
-        email: userData.email,
-        password: userData.password,
-      });
-
-      if (result?.error) {
-        if (result.error == "CredentialsSignin") {
-          toast({
-            title: "Login Failed",
-            description: "Invalid Email or Password",
-            variant: "destructive",
-          });
-        } else {
-          toast({
-            title: "Login Error",
-            description: result.error,
-            variant: "destructive",
-          });
+      const response = await axios.post(
+        "/api/signup",
+        // JSON.stringify(userData),
+        userData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      }
+      );
 
-      if (result?.url) {
+      const finalResponse = response.data;
+
+      if (finalResponse.success) {
         toast({
-          title: "Welcome!",
-          description: "Login Successfully",
+          title: "Register Successfull",
+          description:
+            "Account registration successfull please verify your email, using verfication code that we have sent to your email",
           variant: "default",
+        });
+        setUserData({
+          username: "",
+          email: "",
+          password: "",
+        });
+      } else {
+        toast({
+          title: "Signup Error",
+          description: finalResponse.message,
+          variant: "destructive",
         });
       }
     } catch (error: any) {
       toast({
-        title: "Signin Error",
-        description: error || "Error while trying to login".toString(),
+        title: "Signup Error",
+        description: error || "Error while trying to singup".toString(),
         variant: "destructive",
       });
     } finally {
@@ -95,7 +70,8 @@ export default function page() {
   return (
     <>
       {/* <!-- component --> */}
-      {/* <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4"> */}
+      {/* <div className="h-full bg-gradient-to-tl relative from-green-400 to-indigo-900 w-full py-16 px-4"> */}
+
       <div className="relative inset-0 h-full w-full items-center px-5 py-10 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
         <div className="flex flex-col items-center justify-center">
           <div className="bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16">
@@ -103,20 +79,20 @@ export default function page() {
               tabIndex={0}
               className="focus:outline-none text-2xl font-extrabold leading-6 text-gray-800"
             >
-              Login to your account
+              Create an account
             </p>
             <p
               tabIndex={0}
               className="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500"
             >
-              Dont have account?{" "}
+              Already have an account?{" "}
               <Link
                 // href="javascript:void(0)"
-                href="/signup"
+                href="/login"
                 className="hover:text-gray-500 focus:text-gray-500 focus:outline-none focus:underline hover:underline text-sm font-medium leading-none  text-gray-800 cursor-pointer"
               >
                 {" "}
-                Sign up here
+                Log in here
               </Link>
             </p>
 
@@ -131,6 +107,25 @@ export default function page() {
             </div>
             <div>
               <label
+                id="fullname"
+                className="text-sm font-medium leading-none text-gray-800"
+              >
+                Full Name
+              </label>
+              <input
+                aria-labelledby="fullname"
+                type="text"
+                name="username"
+                value={userData.username}
+                onChange={(e) =>
+                  setUserData({ ...userData, username: e.target.value })
+                }
+                aria-required
+                className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+              />
+            </div>
+            <div className="mt-6 w-full">
+              <label
                 id="email"
                 className="text-sm font-medium leading-none text-gray-800"
               >
@@ -139,11 +134,12 @@ export default function page() {
               <input
                 aria-labelledby="email"
                 type="email"
-                aria-required
+                name="email"
                 value={userData.email}
                 onChange={(e) =>
                   setUserData({ ...userData, email: e.target.value })
                 }
+                aria-required
                 className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
               />
             </div>
@@ -158,12 +154,11 @@ export default function page() {
                 <input
                   id="pass"
                   type={showPassword ? "text" : "password"}
-                  aria-required
                   value={userData.password}
-                  name="password"
                   onChange={(e) =>
                     setUserData({ ...userData, password: e.target.value })
                   }
+                  aria-required
                   className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 />
                 <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
@@ -186,8 +181,8 @@ export default function page() {
             <div className="mt-8">
               <button
                 onClick={handleSubmit}
-                role="button"
                 disabled={isLoading}
+                role="button"
                 className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 h-12 w-full flex justify-center items-center overflow-hidden"
               >
                 {isLoading ? (
@@ -202,7 +197,7 @@ export default function page() {
                     <span className="px-2 font-bold">Loading...</span>
                   </>
                 ) : (
-                  "Login Now"
+                  "Create my account"
                 )}
               </button>
             </div>

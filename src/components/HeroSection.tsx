@@ -7,16 +7,16 @@ export default function () {
     <div>
       {/* <!-- ############################## Hero-container ##################################### --> */}
       <div className="hero-container">
-        <div className="flex justify-center w-full items-center h-[500px] md:h-[900px] relative z-10 bg-gradient-to-r bg-cover bg-no-repeat bg-center before:bg-cover from-violet-500 to-purple-500 before:bg-[url(/about/man.png)] before:content[''] before:absolute before:bottom-0 before:left-0 before:w-[314px] before:h-[300px] xl:before:w-[724px] xl:before:h-[724px] before:-z-10">
+        <div className="flex justify-center w-full items-center h-[400px] lg:h-[900pxx] relative">
           <div className="w-full h-full text-center flex justify-center items-center">
             <div>
-              <h1 className="text-2xl md:hidden text-white z-50 font-black">
+              <h1 className="text-2xl md:text-4xl lg:hidden text-white z-50 font-black">
                 Hello This Is Rajeshson
               </h1>
-              <h1 className="hidden md:block text-7xl text-white z-50 font-black">
+              <h1 className="hidden lg:block text-7xl text-white z-50 font-black">
                 Hello This Is Rajeshson
               </h1>
-              <h3 className="text-base md:text-5xl font-medium relative text-white before:content[''] before:absolute md:before:w-14 before:h-[2px] md:before:h-1 before:left-[40px] md:before:left-36 before:w-8 py-5 before:top-1/2 before:bg-white">
+              <h3 className="text-base md:text-5xl font-medium relative text-white before:content[''] before:absolute md:before:w-14 before:h-[2px] lg:before:h-1 before:left-[40px] md:before:-left-8 lg:before:left-40 before:w-8 py-5 before:top-1/2 before:bg-white">
                 Web Developer
               </h3>
             </div>
@@ -51,6 +51,7 @@ export default function () {
             </a>
           </div>
         </div>
+        {/* </div> */}
       </div>
 
       {/* <!-- End Hero-container --> */}
