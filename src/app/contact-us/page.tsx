@@ -1,11 +1,19 @@
 import React from "react";
-import { FaFacebook, FaInstagram } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaWhatsapp,
+} from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 export default function page() {
   return (
     <>
-      <main id="contact" className="w-full h-auto md:h-[755px] bg-transparent">
+      <main
+        id="contact"
+        className="w-full h-screen  md:h-[755px] bg-transparent"
+      >
         <div className="d-content-container w-4/5 h-3/5 m-auto flex justify-center items-center">
           <div className="d-content w-full h-auto flex justify-center items-center gap-10 flex-col text-center p-5 text-white">
             <h1 className="text-xl xl:text-6xl font-extrabold">
@@ -40,14 +48,16 @@ export default function page() {
               </li>
             </ul>
           </div>
-          <div className="social-links hidden  md:flex items-center gap-12 text-2xl ">
+          <div className="social-links hidden  md:flex items-center gap-4 text-2xl ">
             <a
               className="border-2 border-solid border-gray-500 text-white hover:text-black rounded duration-500 hover:bg-[#2F80ED] h-10 w-10 text-center flex justify-center items-center"
-              href="https://www.facebook.com/rajeshsonmurmur"
+              href="https://www.linkedin.com/in/rajeshsonmurmu/"
               target="_blank"
             >
               {/* <i className="fa-brands fa-facebook"></i> */}
-              <FaFacebook />
+              {/* <FaFacebook /> */}
+              {/* <FaLinkedin href="https://www.linkedin.com/in/rajeshsonmurmu/" /> */}
+              <FaLinkedin href="https://www.linkedin.com/in/rajeshsonmurmu/" />
             </a>
             <a
               className="border-2 border-solid border-gray-500 text-white hover:text-black rounded duration-500 hover:bg-[#2F80ED] h-10 w-10 text-center flex justify-center items-center"
@@ -64,6 +74,14 @@ export default function page() {
             >
               {/* <i className="fa-brands fa-twitter"></i> */}
               <FaXTwitter />
+            </a>
+            <a
+              className="border-2 border-solid border-gray-500 text-white hover:text-black rounded duration-500 hover:bg-[#2F80ED] h-10 w-10 text-center flex justify-center items-center"
+              href="https://wa.me/08603804266"
+              target="_blank"
+            >
+              {/* <i className="fa-brands fa-twitter"></i> */}
+              <FaWhatsapp />
             </a>
           </div>
         </div>

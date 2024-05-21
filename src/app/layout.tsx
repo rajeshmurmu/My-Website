@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import AuthProvider from "@/context/AuthProvider";
+import NextTopLoader from "nextjs-toploader";
+import StickyIcons from "@/components/StickyIcons";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,10 +28,12 @@ export default function RootLayout({
     <html lang="en">
       <AuthProvider>
         <body className={inter.className}>
-          <div className="fixed inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
+          <NextTopLoader />
+          <div className="fixed inset-0 -z-10 h-full xl:h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
           <Navbar />
-          {children}
+          <main className="min-h-[710px] text-white">{children}</main>
           <Toaster />
+          <StickyIcons />
           <Footer />
         </body>
       </AuthProvider>

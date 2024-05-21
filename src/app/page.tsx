@@ -111,12 +111,11 @@ export default function Home() {
     //     </a>
     //   </div>
     // </main>
-
     <>
       <HeroSection />
-      <main>
+      <section className="hero-section">
         <ProjectContainer />
-      </main>
+      </section>
     </>
   );
 }

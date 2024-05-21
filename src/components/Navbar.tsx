@@ -2,10 +2,12 @@
 
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 export default function Navbar() {
+  const router = useRouter();
   const [fixedNavbar, setFixedNavbar] = useState(false);
   const { data: session } = useSession();
   console.log(
@@ -49,6 +51,7 @@ export default function Navbar() {
   return (
     <>
       {/* <!-- ############################## Navbar ##################################### --> */}
+
       <nav
         id="nav"
         className={` bg-black h-[80px] md:h-[70px] z-50 w-full flex justify-center items-center sticky left-0 top-0 ${
@@ -71,15 +74,32 @@ export default function Navbar() {
 
           <div className="hamburger lg:hidden relative">
             {/* <i id="hamburger" className="fa fa-bars text-2xl"></i> */}
-            <GiHamburgerMenu
-              size={20}
-              onClick={handleMobileMenu}
-              onBlur={() => {
-                setTimeout(() => {
-                  setShowMenu(false);
-                }, 300);
-              }}
-            />
+            <div className="flex items-center gap-x-3">
+              {session ? (
+                <button
+                  onClick={() => signOut()}
+                  className="py-1 md:py-2 px-5 rounded bg-fuchsia-500 hover:bg-fuchsia-600"
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link href={"/login"}>
+                  <button className="py-1 md:py-2 px-5 rounded bg-fuchsia-500 hover:bg-fuchsia-600">
+                    Login
+                  </button>
+                </Link>
+              )}
+              <GiHamburgerMenu
+                size={30}
+                height={30}
+                onClick={handleMobileMenu}
+                onBlur={() => {
+                  setTimeout(() => {
+                    setShowMenu(false);
+                  }, 300);
+                }}
+              />
+            </div>
             <div
               id="menu"
               className={`absolute top-12 w-[150px] ${
@@ -105,6 +125,15 @@ export default function Navbar() {
                 <li className="mx-5 my-1 relative py-1 after:absolute after:left-0 after:transition-[width] after:duration-500 after:bottom-0 after:content-[''] after:h-1 after:w-0 after:bg-fuchsia-500 hover:after:w-full">
                   <Link href="/contact-us">Contact</Link>
                 </li>
+                {session ? (
+                  <li className="mx-5 my-1 relative py-1 after:absolute after:left-0 after:transition-[width] after:duration-500 after:bottom-0 after:content-[''] after:h-1 after:w-0 after:bg-fuchsia-500 hover:after:w-full">
+                    <button onClick={() => signOut()}>Logout</button>
+                  </li>
+                ) : (
+                  <li className="mx-5 my-1 relative py-1 after:absolute after:left-0 after:transition-[width] after:duration-500 after:bottom-0 after:content-[''] after:h-1 after:w-0 after:bg-fuchsia-500 hover:after:w-full">
+                    <Link href="/login">Login</Link>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
@@ -134,11 +163,6 @@ export default function Navbar() {
             </ul>
           </div>
           <div className="nav-contact-btn hidden lg:block lg:flex justify-center items-center gap-x-2">
-            <Link href={"https://wa.me/8603804266"} target="_blank">
-              {/* <button className="py-2 px-5 rounded bg-fuchsia-500 hover:bg-fuchsia-600">
-                Contact Me
-              </button> */}
-            </Link>
             {session ? (
               <button
                 onClick={() => signOut()}

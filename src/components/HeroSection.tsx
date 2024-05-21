@@ -1,5 +1,10 @@
 import React from "react";
-import { FaFacebook, FaInstagram } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaWhatsapp,
+} from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 export default function () {
@@ -24,21 +29,20 @@ export default function () {
           <div className="grid-dots hidden absolute bottom-0 right-36">
             <img src="/about/grid.png" alt="" />
           </div>
-          <div className="hero-social-links hidden md:flex flex-col items-center justify-center gap-3 z-20 absolute top-1/2 right-20 -translate-y-1/2 text-2xl">
+          {/* social links */}
+          {/* <div className="hero-social-links hidden md:flex flex-col items-center justify-center gap-3 z-20 absolute top-1/2 right-20 -translate-y-1/2 text-2xl">
             <a
               className="flex justify-center items-center p-3 text-white border-gray-400 border-solid border-2 rounded hover:bg-gradient-to-r text-2xl from-violet-500 to-purple-500"
-              href="https://www.facebook.com/rajeshsonmurmur"
+              href="https://www.linkedin.com/in/rajeshsonmurmu/"
               target="_blank"
             >
-              {/* <i className="fa-brands fa-facebook"></i> */}
-              <FaFacebook size={20} />
+              <FaLinkedin size={20} />
             </a>
             <a
               className="flex justify-center items-center p-3 text-white border-gray-400 border-solid border-2 rounded hover:bg-gradient-to-r from-violet-500 to-purple-500"
               href="https://www.instagram.com/rajeshsonmurmu/"
               target="_blank"
             >
-              {/* <i className="fa-brands fa-instagram"></i> */}
               <FaInstagram size={20} />
             </a>
             <a
@@ -46,10 +50,16 @@ export default function () {
               href="https://twitter.com/RajeshsonMurmur"
               target="_blank"
             >
-              {/* <i className="fa-brands fa-twitter"></i> */}
               <FaXTwitter size={20} />
             </a>
-          </div>
+            <a
+              className="flex justify-center items-center p-3 text-white border-gray-400 border-solid border-2 rounded hover:bg-gradient-to-r from-violet-500 to-purple-500"
+              href="https://wa.me/08603804266"
+              target="_blank"
+            >
+              <FaWhatsapp size={20} />
+            </a>
+          </div> */}
         </div>
         {/* </div> */}
       </div>
