@@ -41,7 +41,7 @@ export default function Navbar() {
         //    { passive: true }
       );
     };
-  }, []);
+  }, [onscroll]);
 
   const [showMenu, setShowMenu] = useState(false);
   const handleMobileMenu = () => {
