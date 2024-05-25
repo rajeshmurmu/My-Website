@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-const DB_NAME = "rajeshmurmu";
-const MONGODB_URI = "mongodb://127.0.0.1:27017";
+// const DB_NAME = "rajeshmurmu";
+// const MONGODB_URI = "mongodb://127.0.0.1:27017";
 
 let isConnected = false;
 
@@ -11,7 +11,7 @@ async function connectDB(): Promise<void> {
   }
   try {
     const connectionIntance = await mongoose.connect(
-      `${MONGODB_URI}/${DB_NAME}`
+      `${process.env.MONGODB_URI}/${process.env.DB_NAME}`
     );
 
     console.log(

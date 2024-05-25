@@ -10,10 +10,10 @@ export default function Navbar() {
   const router = useRouter();
   const [fixedNavbar, setFixedNavbar] = useState(false);
   const { data: session } = useSession();
-  console.log(
-    "This data is using for development to get session in production it will be deleted",
-    session
-  );
+  // console.log(
+  //   "This data is using for development to get session in production it will be deleted",
+  //   session
+  // );
 
   //   const [currentPostion, setCurrentPosition] = useState();
 
